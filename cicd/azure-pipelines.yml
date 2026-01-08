@@ -1,0 +1,89 @@
+trigger:
+  branches:
+    include:
+      - main
+
+variables:
+  terraformVersion: "1.5.7"
+  workingDirectory: "$(System.DefaultWorkingDirectory)/infrastructure/terraform"
+
+stages:
+  - stage: Validate
+    displayName: Validate
+    jobs:
+      - template: cicd/pipelines/templates/terraform-validate.yml
+        parameters:
+          workingDirectory: $(workingDirectory)
+
+  - stage: DeployDev
+    displayName: Deploy Dev
+    dependsOn: Validate
+    jobs:
+      - deployment: TerraformDev
+        displayName: Terraform apply (dev)
+        environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: TerraformInstaller@1
+                  inputs:
+                    terraformVersion: $(terraformVersion)
+                - script: |
+                    cd $(workingDirectory)
+                    terraform init -backend-config=../environments/dev.backend.hcl
+                    terraform apply -auto-approve -var-file=../environments/dev.tfvars
+                  displayName: terraform apply dev
+
+  - stage: DeployTest
+    displayName: Deploy Test
+    dependsOn: DeployDev
+    jobs:
+      - deployment: TerraformTest
+        displayName: Terraform apply (test)
+        environment: test
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: TerraformInstaller@1
+                  inputs:
+                    terraformVersion: $(terraformVersion)
+                - script: |
+                    cd $(workingDirectory)
+                    terraform init -backend-config=../environments/test.backend.hcl
+                    terraform apply -auto-approve -var-file=../environments/test.tfvars
+                  displayName: terraform apply test
+
+  - stage: DeployProd
+    displayName: Deploy Prod
+    dependsOn: DeployTest
+    jobs:
+      - deployment: TerraformProd
+        displayName: Terraform apply (prod)
+        environment: prod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: TerraformInstaller@1
+                  inputs:
+                    terraformVersion: $(terraformVersion)
+                - script: |
+                    cd $(workingDirectory)
+                    terraform init -backend-config=../environments/prod.backend.hcl
+                    terraform apply -auto-approve -var-file=../environments/prod.tfvars
+                  displayName: terraform apply prod
+
+  - stage: BuildAndTest
+    displayName: Build and Test
+    dependsOn: Validate
+    jobs:
+      - job: Build
+        steps:
+          - checkout: self
+          - script: echo "build and test steps go here"
+            displayName: run tests

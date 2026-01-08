@@ -1,0 +1,18 @@
+parameters:
+  - name: workingDirectory
+    type: string
+
+jobs:
+  - job: TerraformValidate
+    displayName: Terraform fmt and validate
+    steps:
+      - checkout: self
+      - task: TerraformInstaller@1
+        inputs:
+          terraformVersion: "1.5.7"
+      - script: |
+          cd ${{ parameters.workingDirectory }}
+          terraform fmt -check -recursive
+          terraform init -backend=false
+          terraform validate
+        displayName: terraform validate
