@@ -1,0 +1,5 @@
+dependencies
+| where timestamp > ago(1h)
+| where duration > 1000
+| project timestamp, name, type, duration, success, resultCode
+| order by duration desc

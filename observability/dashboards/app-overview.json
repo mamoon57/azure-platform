@@ -1,0 +1,25 @@
+{
+  "properties": {
+    "lenses": {
+      "0": {
+        "order": 0,
+        "parts": {
+          "0": {
+            "position": { "x": 0, "y": 0, "colSpan": 6, "rowSpan": 4 },
+            "metadata": {
+              "type": "Extension/AppInsightsExtension/PartType/CuratedBladeFailuresPinnedTile",
+              "inputs": [{ "name": "ComponentId", "value": "appi-shop-prod" }]
+            }
+          },
+          "1": {
+            "position": { "x": 6, "y": 0, "colSpan": 6, "rowSpan": 4 },
+            "metadata": {
+              "type": "Extension/AppInsightsExtension/PartType/CuratedBladeResponseTimePinnedTile",
+              "inputs": [{ "name": "ComponentId", "value": "appi-shop-prod" }]
+            }
+          }
+        }
+      }
+    }
+  }
+}

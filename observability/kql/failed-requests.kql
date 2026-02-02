@@ -1,0 +1,5 @@
+requests
+| where timestamp > ago(24h)
+| where success == false
+| summarize count() by resultCode, name
+| order by count_ desc
