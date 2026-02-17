@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "displayName": "Require Environment tag",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "Blocks create/update when Environment tag is missing.",
+    "metadata": {
+      "category": "Tags"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "field": "tags['Environment']",
+        "exists": "false"
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}
