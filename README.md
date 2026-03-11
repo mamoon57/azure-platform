@@ -11,3 +11,5 @@ Platform work in one repo — each folder is a separate area. Open the one you w
 | [cicd/](cicd/) | Azure DevOps pipelines — validate, deploy, test, promote |
 | [observability/](observability/) | Monitor, Log Analytics, App Insights, dashboards, KQL |
 | [security/](security/) | Private networking, WAF, Key Vault, Defender, Policy, RBAC |
+
+**Mamoon Idrees** · [LinkedIn](https://www.linkedin.com/in/mamoon-idrees) · mamoon.idrees5@gmail.com
