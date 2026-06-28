@@ -1,10 +1,5 @@
 # Security
 
-Private networking so services aren't on the public internet. WAF on the edge, secrets in Key Vault, Defender and Policy for baseline compliance. RBAC scoped as tight as possible.
+Private endpoints so SQL and Key Vault aren't public. WAF on the edge. Defender + Policy for baseline. RBAC as tight as the team will tolerate.
 
-## What's here
-
-- VNet with private endpoints for Key Vault and SQL
-- WAF policy (hook up to App Gateway or Front Door in the app stack)
-- Azure Policy definition for required tags
-- Custom role example with least privilege
+VNet + private endpoints, WAF policy (wire to App Gateway / Front Door in app stack), tag policy, custom role example.

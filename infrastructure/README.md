@@ -1,9 +1,5 @@
 # Infrastructure
 
-Terraform modules for the platform stack. Dev, test, and prod are separate — same modules, different tfvars.
+Terraform modules for the platform. Dev / test / prod share modules, different tfvars.
 
-## What's here
-
-- Reusable network and compute modules
-- Environment tfvars for dev, test, prod
-- Root module with remote state backend (fill in your storage account details)
+Network + compute modules, env tfvars, root module with remote state backend (plug in your storage account).

@@ -1,8 +1,5 @@
 # Application
 
-Web app sits on App Service. Heavier or async stuff runs in Functions — order processing, outbound notifications, that kind of thing.
+Web app on App Service. Heavier stuff — order processing, notifications — goes to Functions.
 
-## What's here
-
-- Terraform for the app service plan, web app, and function app
-- Basic functions host.json to get started locally
+Terraform for the plan, web app, function app. `host.json` in there for local func runs.

@@ -1,8 +1,5 @@
 # Integration
 
-APIM sits in front of the APIs — rate limits, keys, routing. Service Bus handles async messaging between services so nothing blocks waiting on a reply.
+APIM in front of the APIs (keys, rate limits). Service Bus for async — orders, notifications, that kind of traffic.
 
-## What's here
-
-- Terraform for API Management and Service Bus namespace
-- A queue and topic for order / notification style workflows
+Terraform for APIM + Service Bus. Queue and topic yaml for a typical order flow.

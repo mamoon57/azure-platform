@@ -1,9 +1,5 @@
 # CI/CD
 
-Azure DevOps YAML pipeline — validate Terraform, deploy infra, build the app, run tests, then promote through dev → test → prod. Prod needs an approval.
+Azure DevOps pipeline — fmt/validate terraform, deploy infra, build app, tests, promote dev → test → prod. Prod needs manual approval.
 
-## What's here
-
-- Pipeline yaml at `cicd/azure-pipelines.yml` (point ADO at this path)
-- Reusable template for terraform fmt/validate
-- Deploys from `infrastructure/terraform` using env tfvars
+`azure-pipelines.yml` is the entry point. Template for terraform validate. Deploys from `infrastructure/terraform` with env tfvars.
